@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lica - A Love Story</title>
+    <style>
+        body {
+            background-color: #FFC0CB;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            color: #A52A2A;
+            overflow: hidden;
+        }
+        .container {
+            margin: 50px auto;
+            max-width: 800px;
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 2;
+        }
+        .header {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .poem {
+            font-size: 1.5em;
+            margin-top: 30px;
+            font-style: italic;
+            opacity: 0;
+            visibility: hidden;
+            animation: revealPoem 6s ease-in-out forwards;
+        }
+        .emoji {
+            position: absolute;
+            font-size: 2em;
+            animation: float 5s linear infinite;
+            opacity: 0.7;
+        }
+        .surprise-box {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #FF69B4;
+            color: white;
+            font-size: 1.2em;
+            border-radius: 10px;
+            cursor: pointer;
+            display: inline-block;
+            transition: 0.3s;
+        }
+        .surprise-box:hover {
+            background-color: #FF1493;
+        }
+        .hidden-message {
+            font-size: 1.8em;
+            margin-top: 20px;
+            font-weight: bold;
+            color: #FF1493;
+            display: none;
+        }
+        @keyframes float {
+            0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+        }
+        @keyframes revealPoem {
+            0% { opacity: 0; transform: scale(0.8); visibility: visible; }
+            50% { opacity: 1; transform: scale(1.05); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        function createFloatingEmojis() {
+            const emojis = ['💖', '❤️', '💘', '💕', '💞'];
+            setInterval(() => {
+                let emoji = document.createElement('div');
+                emoji.classList.add('emoji');
+                emoji.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+                emoji.style.left = Math.random() * 100 + 'vw';
+                emoji.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                document.body.appendChild(emoji);
+                setTimeout(() => emoji.remove(), 5000);
+            }, 500);
+        }
+        document.addEventListener('DOMContentLoaded', createFloatingEmojis);
+    </script>
+    <div class="container">
+        <div class="header">Welcome to Lica's World 💖</div>
+        <div class="poem">"My beloved is the most beautiful,<br>
+        A soul woven from love’s purest thread.<br>
+        In every glance, the universe sings,<br>
+        In every touch, the stars are spread.<br><br>
+        Her laughter dances like morning light,<br>
+        Her heart, a melody soft and true.<br>
+        With every step, the world grows bright,<br>
+        For love’s pure magic lives in you."</div>
+    </div>
+    
+    <div class="container interests">
+        <h2>Lica's Interests</h2>
+        <p>💖 Loves Ice Cream 🍦</p>
+        <p>💖 Enjoys Goodies 🍫</p>
+        <p>💖 Seeks Adventure 🌍</p>
+    </div>
+    
+    <div class="container">
+        <div class="surprise-box" onclick="showLoveMessage()">Click for a Surprise 💝</div>
+        <div class="hidden-message" id="love-message">I Love You, Lica! 💖</div>
+    </div>
+    
+    <audio autoplay loop>
+        <source src="background-music.mp3" type="audio/mp3">
+    </audio>
+    
+    <script>
+        function showQuote() {
+            document.getElementById("quote").style.display = "block";
+        }
+        
+        function revealPoem() {
+            document.querySelector(".poem").style.animationPlayState = "running";
+        }
+        
+        setTimeout(revealPoem, 3000); // Poem appears as a surprise after 3 seconds
+        
+        function showLoveMessage() {
+            document.getElementById("love-message").style.display = "block";
+        }
+    </script>
+</body>
+</html>
